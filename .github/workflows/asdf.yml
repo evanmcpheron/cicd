@@ -31,4 +31,5 @@ jobs:
           npm run changelog
           git add CHANGELOG.md
           git commit -m "chore: update changelog"
-          git push && git push --follow-tags
+          git push
+          git push --follow-tags
