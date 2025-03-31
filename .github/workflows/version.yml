@@ -1,0 +1,35 @@
+name: Version Bump & Changelog
+
+on:
+  workflow_run:
+    workflows: ['Build']
+    types: [completed]
+
+jobs:
+  version:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 18
+      # - run: npm ci
+
+      # - name: Set Git User
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # - name: Bump Patch Version
+      #   run: npm version patch -m "chore(release): v%s"
+
+      # - name: Generate Changelog
+      #   run: |
+      #     npm run changelog
+      #     git add CHANGELOG.md
+      #     git commit -m "chore: update changelog"
+      #     git push
+      #     git push --follow-tags
